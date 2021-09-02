@@ -5,7 +5,7 @@ import Header from "../layout/Header";
 const Search = () => {
     return(
         <View style={styles?.container}>
-            <Header />
+            <Header name="Search Screen" />
             <Text>
                 Hello from the search component
             </Text>
