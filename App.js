@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -16,8 +8,10 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+// Screens
+import Search from './screens/Search';
+
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -32,7 +26,7 @@ const App = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor="#00aaff"
       />
-      <Text>Hello from the app component</Text>
+      <Search />
     </SafeAreaView>
   );
 };
