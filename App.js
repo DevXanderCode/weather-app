@@ -11,8 +11,9 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import Home from "./screens/Home";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 // Screens
+import Home from "./screens/Home";
 import Search from "./screens/Search";
 
 const Tab = createBottomTabNavigator();
@@ -25,11 +26,12 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={[backgroundStyle, { flex: 1 }]}>
       <StatusBar
         barStyle={isDarkMode ? "light-content" : "dark-content"}
         backgroundColor="#00aaff"
       />
+      {/* <Home /> */}
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
@@ -37,16 +39,19 @@ const App = () => {
               let iconName;
 
               if (route?.name === "home") {
-                iconName = "";
+                iconName = "home-city-outline";
               } else if (route?.name === "search") {
-                iconName = "";
+                iconName = "city";
               }
+
+              return <MaterialCommunityIcons name={iconName} color={color} size={32} />;
             },
           })}
           tabBarOptions={{
             activeTintColor: "white",
             inactiveTintColor: "gray",
-          }}>
+          }}
+          initialRouteName="home">
           <Tab.Screen name="home" component={Home} />
           <Tab.Screen name="search" component={Search} />
         </Tab.Navigator>
