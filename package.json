@@ -11,8 +11,12 @@
     "format": "prettier --check ."
   },
   "lint-staged": {
+    "package.json": [
+      "npx sort-package-json"
+    ],
     "screens/**/*.{ts,tsx, js, jsx}": [
-      "eslint --ext .tsx --ext .ts src/ --fix"
+      "eslint --ext .tsx --ext .ts src/ --fix",
+      "pretty-quick — staged"
     ],
     "./screens/**": [
       "prettier --write ."
@@ -20,7 +24,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "dependencies": {
