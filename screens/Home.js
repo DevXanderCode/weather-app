@@ -7,8 +7,8 @@ const Home = ({ navigation }) => {
   const [info, setInfo] = React.useState({
     name: "loading !!",
     temp: "loading",
-    humidity: "",
-    desc: "",
+    humidity: "0",
+    desc: "loading",
     icon: "loading",
   });
 
@@ -50,6 +50,15 @@ const Home = ({ navigation }) => {
             source={{ uri: `https://openweathermap.org/img/w/${info?.icon}.png` }}
           />
         </View>
+        <Card style={styles?.card}>
+          <Title style={styles?.blueText}>Temperature - {info?.temp}°c</Title>
+        </Card>
+        <Card style={styles?.card}>
+          <Title style={styles?.blueText}>Humidity - {info?.humidity}</Title>
+        </Card>
+        <Card style={styles?.card}>
+          <Title style={styles?.blueText}>Description - {info?.desc}</Title>
+        </Card>
       </View>
     </SafeAreaView>
   );
@@ -70,6 +79,13 @@ const styles = StyleSheet.create({
     color: "#00aaff",
     marginTop: 20,
     fontSize: 30,
+  },
+  card: {
+    margin: 5,
+    padding: 12,
+  },
+  blueText: {
+    color: "#00aaff",
   },
 });
 
