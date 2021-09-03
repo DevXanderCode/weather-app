@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import Home from "./screens/Home";
 // Screens
 import Search from "./screens/Search";
 
@@ -25,7 +26,8 @@ const App = () => {
         barStyle={isDarkMode ? "light-content" : "dark-content"}
         backgroundColor="#00aaff"
       />
-      <Search />
+      {/* <Search /> */}
+      <Home />
     </SafeAreaView>
   );
 };

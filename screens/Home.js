@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { TextInput, Button, Card } from "react-native-paper";
+import { View, Text, StyleSheet, Image, SafeAreaView } from "react-native";
+import { TextInput, Button, Card, Title } from "react-native-paper";
 import Header from "./layout/Header";
 
 const Home = ({ navigation }) => {
@@ -17,7 +17,20 @@ const Home = ({ navigation }) => {
       `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&APPID=0fd5c3dfae61e3978e62cf9c009149d9`,
     )
       .then((res) => res.json())
-      .then((data) => console.log("Logging data", data))
+      .then((data) => {
+        const {
+          name,
+          main: { temp, humidity },
+          weather,
+        } = data;
+        setInfo({
+          name,
+          temp,
+          humidity,
+          desc: weather[0].description,
+          icon: weather[0].icon,
+        });
+      })
       .catch((err) => {
         console.log("got this error when trying to get the weather", err);
       });
@@ -27,15 +40,36 @@ const Home = ({ navigation }) => {
     getWeather();
   }, []);
   return (
-    <View>
-      <Text>Hello from the home screen</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Header />
+        <View style={styles?.titleContainer}>
+          <Title style={styles?.title}>{info?.name}</Title>
+          <Image
+            style={styles?.img}
+            source={{ uri: `https://openweathermap.org/img/w/${info?.icon}.png` }}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  titleContainer: {
+    alignItems: "center",
+  },
+  img: {
+    width: 120,
+    height: 120,
+  },
+  title: {
+    color: "#00aaff",
+    marginTop: 20,
+    fontSize: 30,
   },
 });
 
