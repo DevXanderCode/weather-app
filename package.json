@@ -14,7 +14,7 @@
     "package.json": [
       "npx sort-package-json"
     ],
-    "screens/**/*.{ts,tsx, js, jsx}": [
+    "./screens/**/*.{ts,tsx, js, jsx}": [
       "eslint --ext .tsx --ext .ts src/ --fix",
       "pretty-quick — staged"
     ],
