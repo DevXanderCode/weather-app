@@ -7,7 +7,21 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --check ."
+  },
+  "lint-staged": {
+    "screens/**/*.{ts,tsx, js, jsx}": [
+      "eslint --ext .tsx --ext .ts src/ --fix"
+    ],
+    "./screens/**": [
+      "prettier --write ."
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "react": "17.0.2",
@@ -22,8 +36,12 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
     "eslint": "7.14.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lint-staged": "^11.1.2",
+    "husky": "^7.0.2",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.66.0",
+    "prettier": "^2.3.2",
     "react-native-codegen": "^0.0.7",
     "react-test-renderer": "17.0.2"
   },

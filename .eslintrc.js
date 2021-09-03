@@ -1,11 +1,16 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
-  parser: '@babel/eslint-parser',
+  plugins: ["prettier"],
+  extends: "@react-native-community",
+  parser: "@babel/eslint-parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
-      modules: true
-    }
-  }
+      modules: true,
+    },
+  },
+  rules: {
+    "prettier/prettier": "error",
+    quotes: [2, "double", { avoidEscape: true }],
+  },
 };
