@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, SafeAreaView } from "react-native";
 import { TextInput, Button, Card, Title } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "./layout/Header";
 
 const Home = ({ navigation, route }) => {
@@ -12,10 +13,14 @@ const Home = ({ navigation, route }) => {
     icon: "loading",
   });
 
-  const getWeather = () => {
-    const { city } = route?.params;
+  const getWeather = async () => {
+    let myCity = await AsyncStorage.getItem("newCity");
+    if (!myCity) {
+      const { city } = route?.params;
+      myCity = city;
+    }
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=0fd5c3dfae61e3978e62cf9c009149d9`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${myCity}&units=metric&APPID=0fd5c3dfae61e3978e62cf9c009149d9`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -34,6 +39,7 @@ const Home = ({ navigation, route }) => {
       })
       .catch((err) => {
         console.log("got this error when trying to get the weather", err);
+        alert(err.message);
       });
   };
 

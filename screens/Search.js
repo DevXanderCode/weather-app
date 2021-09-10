@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput, Button } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "./layout/Header";
 
 const Search = ({ navigation }) => {
@@ -37,11 +38,13 @@ const Search = ({ navigation }) => {
 
   // };
 
-  const btnClick = () => {
+  const btnClick = async () => {
+    await AsyncStorage?.setItem("newCity", city);
     navigation?.navigate("home", { city });
   };
 
-  const listClick = (cityName) => {
+  const listClick = async (cityName) => {
+    await AsyncStorage?.setItem("newCity", cityName);
     setCity(cityName);
     navigation?.navigate("home", { city: cityName });
   };
