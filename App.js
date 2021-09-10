@@ -48,11 +48,13 @@ const App = () => {
             },
           })}
           tabBarOptions={{
-            activeTintColor: "red",
+            activeTintColor: "white",
             inactiveTintColor: "gray",
+            activeBackgroundColor: "#00aaff",
+            inactiveBackgroundColor: "#00aaff",
           }}
           initialRouteName="home">
-          <Tab.Screen name="home" component={Home} />
+          <Tab.Screen name="home" component={Home} initialParams={{ city: "Nigeria" }} />
           <Tab.Screen name="search" component={Search} />
         </Tab.Navigator>
       </NavigationContainer>

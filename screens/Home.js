@@ -2,9 +2,8 @@ import React from "react";
 import { View, Text, StyleSheet, Image, SafeAreaView } from "react-native";
 import { TextInput, Button, Card, Title } from "react-native-paper";
 import Header from "./layout/Header";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, route }) => {
   const [info, setInfo] = React.useState({
     name: "loading !!",
     temp: "loading",
@@ -14,8 +13,9 @@ const Home = ({ navigation }) => {
   });
 
   const getWeather = () => {
+    const { city } = route?.params;
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&APPID=0fd5c3dfae61e3978e62cf9c009149d9`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=0fd5c3dfae61e3978e62cf9c009149d9`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -39,7 +39,7 @@ const Home = ({ navigation }) => {
 
   React.useEffect(() => {
     getWeather();
-  }, []);
+  }, [route?.params?.city]);
   return (
     <SafeAreaView>
       <View>
@@ -60,7 +60,6 @@ const Home = ({ navigation }) => {
         <Card style={styles?.card}>
           <Title style={styles?.blueText}>Description - {info?.desc}</Title>
         </Card>
-        {/* <MaterialCommunityIcons name={"city"} color={"blue"} size={32} /> */}
       </View>
     </SafeAreaView>
   );

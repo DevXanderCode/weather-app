@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import Header from "./layout/Header";
 
-const Search = () => {
+const Search = ({ navigation }) => {
   const [city, setCity] = React.useState("");
   const [cities, setCities] = React.useState([]);
   // TODO: work on autocomplete feature for cities
@@ -37,6 +37,15 @@ const Search = () => {
 
   // };
 
+  const btnClick = () => {
+    navigation?.navigate("home", { city });
+  };
+
+  const listClick = (cityName) => {
+    setCity(cityName);
+    navigation?.navigate("home", { city: cityName });
+  };
+
   return (
     <View style={styles?.container}>
       <Header name="Search Screen" />
@@ -52,7 +61,9 @@ const Search = () => {
         icon="content-save"
         style={styles?.btn}
         labelStyle={styles?.btnText}
-        onPress={() => {}}>
+        onPress={() => {
+          btnClick();
+        }}>
         Search
       </Button>
     </View>
