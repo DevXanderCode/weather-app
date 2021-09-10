@@ -35,7 +35,7 @@ const App = () => {
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
-            tarBarIcon: ({ color }) => {
+            tabBarIcon: ({ color }) => {
               let iconName;
 
               if (route?.name === "home") {
@@ -48,7 +48,7 @@ const App = () => {
             },
           })}
           tabBarOptions={{
-            activeTintColor: "white",
+            activeTintColor: "red",
             inactiveTintColor: "gray",
           }}
           initialRouteName="home">

@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image, SafeAreaView } from "react-native";
 import { TextInput, Button, Card, Title } from "react-native-paper";
 import Header from "./layout/Header";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Home = ({ navigation }) => {
   const [info, setInfo] = React.useState({
@@ -59,6 +60,7 @@ const Home = ({ navigation }) => {
         <Card style={styles?.card}>
           <Title style={styles?.blueText}>Description - {info?.desc}</Title>
         </Card>
+        {/* <MaterialCommunityIcons name={"city"} color={"blue"} size={32} /> */}
       </View>
     </SafeAreaView>
   );
